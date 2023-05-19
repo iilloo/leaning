@@ -11,9 +11,7 @@
 8. putchar('字符');将打印某个字符到输出流中
 9. 尾部递归(函数在递归调用返回后不执行任何操作)可以很方便的转换为一个简单的循环
 10. 当一个问题相当复杂，难以用迭代实现时，可以用递归实现
-11. 
-
-[缺省参数类型提升是指在调用没有原型的函数或者可变长参数函数时，对实参进行的一些隐式转换](https://stackoverflow.com/questions/60221297/i-want-default-argument-promotions-example)[^1^](https://stackoverflow.com/questions/60221297/i-want-default-argument-promotions-example)[^2^](https://stackoverflow.com/questions/1255775/default-argument-promotions-in-c-function-calls)。缺省参数类型提升的规则是：
-
-* 整型类型（char、short、int）如果小于int的长度，都会提升为int或者unsigned int。
-* 浮点类型（float）会提升为double。
+11. [缺省参数类型提升是指在调用没有原型的函数或者可变长参数函数时，对实参进行的一些隐式转换](https://stackoverflow.com/questions/60221297/i-want-default-argument-promotions-example)
+    * 整型类型（char、short、int）如果小于int的长度，都会提升为int或者unsigned int。
+    * 浮点类型（float）会提升为double。
+12.
