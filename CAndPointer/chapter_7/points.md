@@ -12,6 +12,32 @@
 9. 尾部递归(函数在递归调用返回后不执行任何操作)可以很方便的转换为一个简单的循环
 10. 当一个问题相当复杂，难以用迭代实现时，可以用递归实现
 11. [缺省参数类型提升是指在调用没有原型的函数或者可变长参数函数时，对实参进行的一些隐式转换](https://stackoverflow.com/questions/60221297/i-want-default-argument-promotions-example)
+
     * 整型类型（char、short、int）如果小于int的长度，都会提升为int或者unsigned int。
     * 浮点类型（float）会提升为double。
-12.
+    * 没有原型的函数已经被现代c标准抛弃
+12. 利用stdarg.h中声明的va_list类型、和三个宏va_start、va_arg、va_end可以实现让一个函数可以接受不固定数目的参数(可变参数列表)
+
+    ```c
+    int sum(int n , ... );
+    int sum(int n,...)
+    {
+    va_list ap;
+    int sum = 0;
+    va_start(ap,n);
+    for (int i = 0; i < n; i++)
+    {
+    sum += va_arg(ap,int);
+    }
+    va_end(ap);
+    return  sum;
+
+    }
+    ```
+    > 参数列表中的省略号表示此处可以传递数量和类型未知的参数，声明的va_list类型的变量ap用于访问参数列表的未确定部分，此变量通过调用va_start函宏来初始化(第一个参数是va_list类型的变量名ap，第二个参数是省略号前最后一个有名字的参数，初始化函数将ap变量设置为指向可变参数部分的第一个参数)；使用va_arg宏可以访问参数列表中的参数(两个参数，第一个是va_list类型的ap和参数列表中的下一个参数的类型)，va_arg返回这个参数的值，并使var_arg指向下一个可变参数；当我们不想继续访问或可变参数访问完毕后可以调用va_end宏
+    >
+13. 可变参数必须从头到尾按照顺序逐各访问，可以不访问完，但不能已开始就访问参数列表中间的参数，
+
+    参数列表中至少要有一个命名参数，这样才能使用va_start；可以通过命名参数来指定传入的可变参数的具体数量和传入的类型
+14. 在va_arg宏中存在缺省的参数类型提升，char、short被提升为int传递给函数，float被提升为double,使用这些类型要小心
+15.

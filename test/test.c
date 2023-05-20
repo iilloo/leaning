@@ -1,21 +1,39 @@
 #include<stdio.h>
 
-long test(int n)
-{
+// long test(int n)
+// {
    
-    long result = 1;
-    long i = 1;
-    while(n-- > 2)
+//     long result = 1;
+//     long i = 1;
+//     while(n-- > 2)
+//     {
+//         long j = result;
+//         result +=  i;
+//         i = j;
+//     }
+//     return result;
+// }
+#include<stdarg.h>
+int sum(int n,...)
+{
+    va_list ap;
+    int sum = 0;
+    va_start(ap,n);
+    for (int i = 0; i < n; i++)
     {
-        long j = result;
-        result +=  i;
-        i = j;
+        sum += va_arg(ap,int);
     }
-    return result;
+    va_end(ap);
+    return  sum;
+    
+}
+void test(char ch)
+{
+    printf("%ld\n",sizeof(ch));
 }
 int main(void)
 {
-    printf("%ld\n",test(2));
+    test('a');
     return 0 ;
 }
 
