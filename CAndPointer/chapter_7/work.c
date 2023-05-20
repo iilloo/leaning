@@ -47,7 +47,15 @@ void test_4(void)
 
 #include<string.h>
 void print_integer(int num);
+void print_integer(int num)
+{
+    ;
+}
 void print_float(float num);
+void print_float(float num)
+{
+    ;
+}
 int printf_overload(const char *format , ...)
 {
     va_list ap ;    
@@ -61,19 +69,19 @@ int printf_overload(const char *format , ...)
             if(format[i] == 'd')
             {
                 print_integer(va_arg(ap , int));
-                ++sum ;
+                ++sum ; ++i;
             }else if (format[i] == 'f')
             {
                 print_float(va_arg(ap , double));
-                ++sum ;
+                ++sum ; ++i;
             }else if(format[i] == 'c')
             {
                 putchar((char)va_arg(ap , int));
-                ++sum ;
+                ++sum ; ++i;
             }else if(format[i] == 's')
             {
                 char* ch = (char *)va_arg(ap , char *);
-                ++sum ;
+                ++sum ; ++i;
                 puts(ch);
             }
             else{
@@ -91,6 +99,11 @@ int printf_overload(const char *format , ...)
 void test_5(void)
 {
     printf("printf_overload的返回值:%d\n" , printf_overload("abc%c%s%s" , '1' , "2.3" , "hello"));
+}
+
+void test_6(void)
+{
+    // 这个题很难
 }
 int main(void)
 {

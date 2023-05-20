@@ -13,30 +13,19 @@
 //     }
 //     return result;
 // }
-#include<stdarg.h>
-int sum(int n,...)
+
+void test(void)
 {
-    va_list ap;
-    int sum = 0;
-    va_start(ap,n);
-    for (int i = 0; i < n; i++)
-    {
-        sum += va_arg(ap,int);
-    }
-    va_end(ap);
-    return  sum;
-    
-}
-void test(char ch)
-{
-    return 1;
+    int c = 0 ;
+    int e = 0 ;
+    int *a = &c;
+    int *b = a+1 ; 
+    int d = a[1] ;
+    printf("%d,%d\n",*b,d);
 }
 int main(void)
 {
-    test('a');
-    
-    
-    
+    test();//(void)test();
     return 0 ;
 }
 
