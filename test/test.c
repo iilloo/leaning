@@ -29,11 +29,14 @@ int sum(int n,...)
 }
 void test(char ch)
 {
-    printf("%ld\n",sizeof(ch));
+    return 1;
 }
 int main(void)
 {
     test('a');
+    
+    
+    
     return 0 ;
 }
 
