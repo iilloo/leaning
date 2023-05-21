@@ -14,15 +14,22 @@
 //     return result;
 // }
 
+// void test(void)
+// {
+//     int c = 0 ;
+//     int e = 0 ;
+//     int *a = &c;
+//     int *b = a+1 ; 
+//     int d = a[1] ;
+//     printf("%d,%d\n",*b,d);
+// }
 void test(void)
 {
-    int c = 0 ;
-    int e = 0 ;
-    int *a = &c;
-    int *b = a+1 ; 
-    int d = a[1] ;
-    printf("%d,%d\n",*b,d);
+    int a[2][2][3] = {0};
+    int (*p)[2][3] = a;
+    printf("%d\n",p[0][0][0]);
 }
+
 int main(void)
 {
     test();//(void)test();
