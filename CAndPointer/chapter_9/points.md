@@ -18,4 +18,14 @@
    必须保证目标字符串数组的剩余空间足以保存整个源字符串
 5. strcpy和strcat返回的是第一个参数的拷贝(里面是一个地址)
 6. 字符串比较函数strcmp，`int strcmp( char const *s1, char const *s2 );`如果s1< s2 ,函数返回大于零的值(不一定就是-1)，s1>s2返回大于0的值(不一定是1)，相等返回0
-7.
+7. 长度受限的字符串字符串函数(strccpy、strncat、strncmp\)
+
+   ```c
+   char *strncpy( char *dst, char const *src, size_t len);
+   char *strncat( char *dst, char const *src, size_t len);
+   int strncmp( char const *s1, char const *s2, size_t len);
+   ```
+
+   * strncpy把源字符串的字符复制到目标数组，它总是向dst写入len个字符，如果src的长度小于len，dst数组就用额外的NUL字节填充到len长度；如果src的值大于或等于len，那么只有len个字符被复制到dst中，此时dst的结尾将没有NUL字节(需要自己加上)
+   * strncat从src复制最多len个字符到目标数组的后面，并且strncat会在结果字符串的最后添加NUL字节，当src的长度<len时只会添加一个NUL字节不会进行NUL填充；当src的长度>=len时，strncat函数将src的前len个字符添加到dst的尾部(当然覆盖掉了源NUL字节了)，最后再在新的dst后面添加一个NUL字节
+   * strncmp只比较前len个字符，前len个字符像strcmp一样的规则进行比较
