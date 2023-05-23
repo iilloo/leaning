@@ -77,6 +77,46 @@
     ```
 
     strcspn函数与strspn函数正好相反，strspn是连续匹配直到第一次遇到不匹配的位置之前的字符数；strcspn是连续不匹配直到第一次遇到匹配的位置之前的字符数
-12. 
+12. strtok用于分割字符串：
+
+    * strtok函数用于分解字符串为一组子字符串，第一个参数是要分解的字符串，第二个参数是包含分隔符的字符串。
+    * 首次调用strtok函数时，传递要分解的字符串和分隔符字符串，函数会在遇到分隔符时将其替换为’\0’，并返回第一个子字符串的指针。
+    * 之后再次调用strtok函数时，传递NULL和分隔符字符串，函数会从上次结束的位置继续查找分隔符，并返回下一个子字符串的指针。
+    * 如果没有可检索的子字符串，则返回一个空指针。
+
+    exp:
+
+    ```c
+    #include <string.h>
+    #include <stdio.h>
+    int main () {
+      char str[80] = "litianyi@hust.edu@cn";
+      const char s[2] = ".@";
+      char *token;
+      //第一次调用strtok函数
+      token = strtok(str, s);
+      //循环调用strtok函数
+      while( token != NULL ) {
+        printf( "%s\n", token );
+        token = strtok(NULL, s);
+      }
+      return(0);
+    }
+    /*输出结果如下：
+    litianyi
+    hust
+    edu
+    cn
+    */
+    ```
+
+    你可以在第一次调用之后的strtok调用(第一个参数为NULL时)时，使用不同的分隔符集合；当一个字符串的不同部分由不同的字符集分割的时候，可以使用这个方法；strtok函数会保存第一次处理的源字符串的局部状态，所以不能同时分割两个字符串
+13. strerror函数用于返回一个指向描述错误信息的字符串的指针；原型：
+
+    ```c
+    char *strerror(int error_number );
+    ```
+
+    当函数调用出现一些错误时，操作系统通过设置一个外部的整型变量errno进行错误代码的报告，strerrror将其中的一个errno作为参数，返回一个指向用于描述错误信息的字符串
 
 qq
