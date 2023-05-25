@@ -140,5 +140,23 @@
     * 把小写字母转换为大学: `int toupper( int ch );`
     * 如果函数的参数不符合不符合要求，则直接返回该参数
 17. 如果判断一个字符是否是大写字母，如果用ch>='A'&&ch<='Z'则只能在使用ASCII的机器上运行，如果用isupper函数来判断，则程序是可移植的
+18. 与字符串相关的函数如：strcpy、strcat等在遇到第一个NUL字节时就会停止工作，那么如果处理的不是字符串而是中间包含NUL字节的字符数组的情况时就需要可以对内存进行操作的函数
+19. 这些函数与字符串函数类似，但他们能够处理任意的字节序列，原型如下：
+
+    ```c
+    void *memcpy(void *dat, void const *src, size_t length );
+    void *memmove(void *dat, void const *src, size_t length );
+    void *memcmp(void const *a, void const *b, size_t length );
+    void *memchr(void const *a, int ch, size_t length );
+    void *memset(void *a , int ch , size_t length );
+    ```
+
+    size_t的单位是字节(因为它可以处理任何类型的数组，索性规定为亿字节为单位)而不是字符个数了。（任何类型的指针都可以隐式转换为void*的类型，所以这些函数可以接收任何类型的数组，包括复制结构或结构数组）第三个参数的大小可以通过希望复制的个数count乘上sizeof(数组中单个元素)来确定；
+
+    * memcpy函数从src的起始位置复制length个字节到dst内存的起始位置
+    * memmove函数与memcpy功能相似，只不过其参数的两个指针所指的内存区域可以重叠
+    * memcpy对两段内存中内容进行length个字节的比较，由于是按照无符号字符逐个字节进行比较，所以当指针指向的数组不是字符数组时其结果可能和预期的不同
+    * memchar函数从a的起始位置开始查找字符ch第一次出现的位置返回指向该位置的指针，如果length个字节中未找到该字符，函数返回一个NULL指针
+    * memset函数把从a开始的length个字节设置为字符值ch，一般用于初始化为0
 
 qq
