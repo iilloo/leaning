@@ -45,7 +45,15 @@ typedef struct test_1
     test_1 *next; 
 }test_1;
 
-
+struct B ;
+struct A
+{
+    struct B *b;
+};
+struct B
+{
+    struct A *a;
+};
 
 
 int main(void)
