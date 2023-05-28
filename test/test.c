@@ -30,6 +30,24 @@ void test(void)
     printf("%d\n",p[0][0][0]);
 }
 
+struct test
+{
+    int a;
+    int b;
+    int c;
+};
+struct test t = {1,2,3};
+struct test a[2] = {{1,2,3},{4,5,6}};
+struct test *p = &t;
+
+typedef struct test_1
+{
+    test_1 *next; 
+}test_1;
+
+
+
+
 int main(void)
 {
     test();//(void)test();
